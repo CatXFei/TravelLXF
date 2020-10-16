@@ -1,0 +1,20 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Delete ApplyVisa
+{% endblock %}
+
+{% block content %}
+    <form
+        action = "{{ applyvisa.get_delete_url }}"
+        method = "post">
+        {% csrf_token %}
+        <p>
+            Are you sure that you want to delete
+            visa application {{ applyvisa }}?
+        </p>
+
+        <a href="{{ applyvisa.get_absolute_url }}">Cancel</a>
+        <button type="submit">Delete ApplyVisa</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Error Deleting Visa
+{% endblock %}
+
+{% block content %}
+    <div>
+    <h2>Error Deleting Visa</h2>
+    <p>
+        You may not delete visa {{ visa  }}.
+        This visa has been applied the following travelers:
+    </p>
+
+    <ul>
+        {% for applyvisa in applyvisas %}
+            <li>
+                <a href="{{ applyvisa.get_absolute_url }}">{{ applyvisa }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        return to <a href="{% url 'travelmanager_visa_list_urlpattern' %}">Visa List</a>
+    </p>
+    </div>
+{% endblock %}

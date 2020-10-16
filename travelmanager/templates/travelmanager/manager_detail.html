@@ -1,0 +1,54 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Manager - {{ manager }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ manager }}</h2>
+
+    <ul class="inline">
+        {% if perms.travelmanager.change_manager %}
+        <li>
+          <a
+              href="{{ manager.get_update_url }}"
+              class="button">
+            Edit Manager</a></li>
+        {% endif %}
+        {% if perms.travelmanager.delete_manager %}
+        <li>
+          <a
+              href="{{ manager.get_delete_url }}"
+              class="button">
+            Delete Manager</a></li>
+        {% endif %}
+    </ul>
+
+
+    <section>
+        <table>
+            <tr>
+                <th>First Name:</th>
+                <td>{{ manager.first_name }}</td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
+                <td>{{ manager.last_name }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Trips</h3>
+        <ul>
+            {% for trip in trip_list %}
+                <li>
+                    <a href="{{trip.get_absolute_url }}">{{ trip }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no trips for this manager.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
+

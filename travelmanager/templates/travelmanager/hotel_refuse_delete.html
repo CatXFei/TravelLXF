@@ -1,0 +1,27 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Error Deleting Hotel
+{% endblock %}
+
+{% block content %}
+    <div>
+    <h2>Error Deleting Hotel</h2>
+    <p>
+        You may not delete hotel {{ hotel  }}.
+        This hotel has been booked by the following trips:
+    </p>
+
+    <ul>
+        {% for bookhotel in bookhotels %}
+            <li>
+                <a href="{{ bookhotel.get_absolute_url }}">{{ bookhotel.trip }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        return to <a href="{% url 'travelmanager_hotel_list_urlpattern' %}">Hotel List</a>
+    </p>
+    </div>
+{% endblock %}

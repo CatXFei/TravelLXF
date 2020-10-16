@@ -1,0 +1,36 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block name %}
+   Visa List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.travelmanager.add_trip %}
+    <a
+        href="{% url 'travelmanager_visa_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Visa</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Visa List</h2>
+    {% if perms.travelmanager.add_visa %}
+    <div class="mobile">
+      <a
+          href="{% url 'travelmanager_visa_create_urlpattern' %}"
+          class="button button-primary">
+        Create New Visa</a>
+    </div>
+    {% endif %}
+
+    {% for visa in visa_list %}
+        <li>
+            <a href="{{visa.get_absolute_url }}">{{ visa }}</a>
+        </li>
+    {% empty %}
+        <li><em>There are no currently visas available</em></li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

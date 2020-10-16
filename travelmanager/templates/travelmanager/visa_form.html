@@ -1,0 +1,16 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Create Visa
+{% endblock %}
+
+{% block content %}
+    <form
+        action = "{% url 'travelmanager_visa_create_urlpattern' %}"
+        method = "post">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Visa</button>
+    </form>
+{% endblock %}

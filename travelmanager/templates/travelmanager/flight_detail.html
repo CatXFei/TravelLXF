@@ -1,0 +1,50 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Flight - {{ flight }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ flight }}</h2>
+
+    <ul class="inline">
+        {% if perms.travelmanager.change_flight %}
+        <li>
+          <a
+              href="{{ flight.get_update_url }}"
+              class="button">
+            Edit Flight</a></li>
+        {% endif %}
+        {% if perms.travelmanager.delete_flight %}
+        <li>
+          <a
+              href="{{ flight.get_delete_url }}"
+              class="button">
+            Delete Flight</a></li>
+        {% endif %}
+    </ul>
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Airline Company:</th>
+                <td>{{ flight.company }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>BookFlight</h3>
+        <ul>
+            {% for bookflight in bookflight_list %}
+                <li>
+                    <a href="{{bookflight.get_absolute_url }}">{{ bookflight }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no reservation for this flight.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
+

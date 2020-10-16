@@ -1,0 +1,27 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Error Deleting Manager
+{% endblock %}
+
+{% block content %}
+    <div>
+    <h2>Error Deleting Manager</h2>
+    <p>
+        You may not delete manager {{ manager  }}.
+        This manager is managing the following trips:
+    </p>
+
+    <ul>
+        {% for trip in trips %}
+            <li>
+                <a href="{{ trip.get_absolute_url }}">{{ trip }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        return to <a href="{% url 'travelmanager_manager_list_urlpattern' %}">Manager List</a>
+    </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Error Deleting Flight
+{% endblock %}
+
+{% block content %}
+    <div>
+    <h2>Error Deleting Flight</h2>
+    <p>
+        You may not delete flight {{ flight  }}.
+        This flight has been booked by the following trips:
+    </p>
+
+    <ul>
+        {% for bookflight in bookflights %}
+            <li>
+                <a href="{{ bookflight.get_absolute_url }}">{{ bookflight.trip }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        return to <a href="{% url 'travelmanager_flight_list_urlpattern' %}">Hotel List</a>
+    </p>
+    </div>
+{% endblock %}

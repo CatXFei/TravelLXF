@@ -1,0 +1,16 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Update Manager
+{% endblock %}
+
+{% block content %}
+    <form
+        action = "{{ manager.get_update_url }}"
+        method = "post">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Manager</button>
+    </form>
+{% endblock %}

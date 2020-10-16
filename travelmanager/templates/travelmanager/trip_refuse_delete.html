@@ -1,0 +1,27 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Error Deleting Trip
+{% endblock %}
+
+{% block content %}
+    <div>
+    <h2>Error Deleting Trip</h2>
+    <p>
+        You may not delete trip {{ trip  }}.
+        This trip has the following travelers:
+    </p>
+
+    <ul>
+        {% for registration in registrations %}
+            <li>
+                <a href="{{ registration.get_absolute_url }}">{{ registration.traveler }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        return to <a href="{% url 'travelmanager_trip_list_urlpattern' %}">Trip List</a>
+    </p>
+    </div>
+{% endblock %}

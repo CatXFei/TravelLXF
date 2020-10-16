@@ -1,0 +1,36 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block name %}
+   Manager List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.travelmanager.add_manager %}
+    <a
+        href="{% url 'travelmanager_manager_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Manager</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Manager List</h2>
+    {% if perms.travelmanager.add_manager %}
+    <div class="mobile">
+      <a
+          href="{% url 'travelmanager_manager_create_urlpattern' %}"
+          class="button button-primary">
+        Create New Manager</a>
+    </div>
+    {% endif %}
+
+    {% for manager in manager_list %}
+        <li>
+            <a href="{{manager.get_absolute_url }}">{{ manager }}</a>
+        </li>
+    {% empty %}
+        <li><em>There are no currently managers available</em></li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

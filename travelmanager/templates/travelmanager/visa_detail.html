@@ -1,0 +1,50 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Visa - {{ visa }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ visa }}</h2>
+
+    <ul class="inline">
+        {% if perms.travelmanager.change_visa %}
+        <li>
+          <a
+              href="{{ visa.get_update_url }}"
+              class="button">
+            Edit Visa</a></li>
+        {% endif %}
+        {% if perms.travelmanager.delete_visa %}
+        <li>
+          <a
+              href="{{ visa.get_delete_url }}"
+              class="button">
+            Delete Visa</a></li>
+        {% endif %}
+    </ul>
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Country:</th>
+                <td>{{ visa.country }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>ApplyVisa</h3>
+        <ul>
+            {% for applyvisa in applyvisa_list %}
+                <li>
+                    <a href="{{applyvisa.get_absolute_url }}">{{ applyvisa }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no application for this  visa.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
+

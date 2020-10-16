@@ -1,0 +1,107 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Trip - {{ trip }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ trip }}</h2>
+
+    <ul class="inline">
+        {% if perms.travelmanager.change_trip %}
+        <li>
+          <a
+              href="{{ trip.get_update_url }}"
+              class="button">
+            Edit Trip</a></li>
+        {% endif %}
+        {% if perms.travelmanager.delete_trip %}
+        <li>
+          <a
+              href="{{ trip.get_delete_url }}"
+              class="button">
+            Delete Trip</a></li>
+        {% endif %}
+    </ul>
+
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Depart Place:</th>
+                <td>{{ trip.depart_place }}</td>
+            </tr>
+            <tr>
+                <th>Depart Time:</th>
+                <td>{{ trip.depart_time }}</td>
+            </tr>
+            <tr>
+                <th>Destination Place:</th>
+                <td>{{ trip.destination_place }}</td>
+            </tr>
+            <tr>
+                <th>Destination Time:</th>
+                <td>{{ trip.destination_time }}</td>
+            </tr>
+            <tr>
+                <th>Total Number:</th>
+                <td>{{ trip.total_number }}</td>
+            </tr>
+            <tr>
+                <th>Ticket Fee:</th>
+                <td>{{ trip.ticket_fee }}</td>
+            </tr>
+            <tr>
+                <th>Dining Fee:</th>
+                <td>{{ trip.dining_fee }}</td>
+            </tr>
+            <tr>
+                <th>Manager:</th>
+                <td><a href="{{ trip.manager.get_absolute_url }}">{{ trip.manager }}</a></td>
+            </tr>
+
+        </table>
+    </section>
+
+    <section>
+        <h3>Registration</h3>
+        <ul>
+            {% for registration in registration_list %}
+                <li>
+                    <a href="{{registration.get_absolute_url }}">{{ registration }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no registrations for this trip.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+
+    <section>
+        <h3>BookFlight</h3>
+        <ul>
+            {% for bookflight in bookflight_list %}
+                <li>
+                    <a href="{{bookflight.get_absolute_url }}">{{ bookflight }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no flights booked for this trip.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>BookHotel</h3>
+        <ul>
+            {% for bookhotel in bookhotel_list %}
+                <li>
+                    <a href="{{bookhotel.get_absolute_url }}">{{ bookhotel }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no hotels booked for this trip.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
+

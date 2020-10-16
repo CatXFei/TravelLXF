@@ -1,0 +1,55 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Hotel - {{ hotel }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ hotel }}</h2>
+
+    <ul class="inline">
+        {% if perms.travelmanager.change_hotel %}
+        <li>
+          <a
+              href="{{ hotel.get_update_url }}"
+              class="button">
+            Edit Hotel</a></li>
+        {% endif %}
+        {% if perms.travelmanager.delete_hotel %}
+        <li>
+          <a
+              href="{{ hotel.get_delete_url }}"
+              class="button">
+            Delete Hotel</a></li>
+        {% endif %}
+    </ul>
+
+
+
+    <section>
+        <table>
+            <tr>
+                <th>Hotel Name:</th>
+                <td>{{ hotel.hotel_name }}</td>
+            </tr>
+            <tr>
+                <th>Hotel Place:</th>
+                <td>{{ hotel.hotel_place }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>BookHotel</h3>
+        <ul>
+            {% for bookhotel in bookhotel_list %}
+                <li>
+                    <a href="{{bookhotel.get_absolute_url }}">{{ bookhotel }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no reservation for this hotel.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
+

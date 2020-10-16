@@ -1,0 +1,62 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    BookFlight - {{ bookflight }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ bookflight  }}</h2>
+
+    <ul class="inline">
+        {% if perms.travelmanager.change_bookflight %}
+        <li>
+          <a
+              href="{{ bookflight.get_update_url }}"
+              class="button">
+            Edit BookFlight</a></li>
+        {% endif %}
+        {% if perms.travelmanager.delete_bookflight %}
+        <li>
+          <a
+              href="{{ bookflight.get_delete_url }}"
+              class="button">
+            Delete BookFlight</a></li>
+        {% endif %}
+    </ul>
+
+    <section>
+        <table>
+            <tr>
+                <th>Depart Place:</th>
+                <td>{{ bookflight.depart_place }}</td>
+            </tr>
+            <tr>
+                <th>Depart Time:</th>
+                <td>{{ bookflight.depart_time }}</td>
+            </tr>
+            <tr>
+                <th>Destination Place:</th>
+                <td>{{ bookflight.destination_place }}</td>
+            </tr>
+            <tr>
+                <th>Destination Time:</th>
+                <td>{{ bookflight.destination_time }}</td>
+            </tr>
+            <tr>
+                <th>Price:</th>
+                <td>{{ bookflight.price }}</td>
+            </tr>
+            <tr>
+                <th>Trip:</th>
+                <td><a href="{{  bookflight.trip.get_absolute_url }}">{{ bookflight.trip }}</a></td>
+            </tr>
+            <tr>
+                <th>Flight:</th>
+                <td><a href="{{ bookflight.flight.get_absolute_url }}">{{ bookflight.flight }}</a></td>
+            </tr>
+
+        </table>
+    </section>
+
+{% endblock %}
+

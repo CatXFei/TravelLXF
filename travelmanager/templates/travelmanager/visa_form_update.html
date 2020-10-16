@@ -1,0 +1,16 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Update Visa
+{% endblock %}
+
+{% block content %}
+    <form
+        action = "{{ visa.get_update_url }}"
+        method = "post">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Visa</button>
+    </form>
+{% endblock %}

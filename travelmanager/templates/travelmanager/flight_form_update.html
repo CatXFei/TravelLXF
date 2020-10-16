@@ -1,0 +1,16 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Update Flight
+{% endblock %}
+
+{% block content %}
+    <form
+        action = "{{ flight.get_update_url }}"
+        method = "post">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Flight</button>
+    </form>
+{% endblock %}

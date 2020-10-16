@@ -1,0 +1,16 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Create Manager
+{% endblock %}
+
+{% block content %}
+    <form
+        action = "{% url 'travelmanager_manager_create_urlpattern' %}"
+        method = "post">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Manager</button>
+    </form>
+{% endblock %}

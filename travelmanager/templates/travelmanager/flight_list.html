@@ -1,0 +1,36 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block name %}
+   Flight List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.travelmanager.add_flight %}
+    <a
+        href="{% url 'travelmanager_flight_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Flight</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Flight List</h2>
+    {% if perms.travelmanager.add_flight %}
+    <div class="mobile">
+      <a
+          href="{% url 'travelmanager_flight_create_urlpattern' %}"
+          class="button button-primary">
+        Create New Flight</a>
+    </div>
+    {% endif %}
+
+    {% for flight in flight_list %}
+        <li>
+            <a href="{{flight.get_absolute_url }}">{{ flight }}</a>
+        </li>
+    {% empty %}
+        <li><em>There are no currently flights available</em></li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

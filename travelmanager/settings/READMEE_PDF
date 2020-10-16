@@ -1,0 +1,23 @@
+Travel Manager is a travel information record keeping system for both thee trip organizers and travelers.
+The organizers of the trips, namely the "namagers", can record and update the trip information, including traveler personal information, visa application status, flight and hotel booking status, trip fees and so on.
+The travelers who has joined the trip can use this system to conveniently store and manage detail information in one or even many trips.
+The potential travelers, who have not decided wether or not to join yet, would be able to have a look at the manager and the people who has joined one specific trip. This system serve as an information scource to help them make trip decisions.
+
+The authentications and permissions of this system is almost as the same as that of the ez_university project.
+There are three groups: ci_registrator, ci_scheduler, ci_user
+There are six users: clerk （ci_user）, coworker, registrator (ci_registrator), schedueler (ci_scheduler), systemadmin (superuser), tester (superuser)
+The professionals at travel agency companieswho just want to have a look at the informatino without editing or creating any data,  should login as clerks
+The guests of the system, who want to know about the base information about the system itself without access to any specific data, should login as coworker
+The prospective tarvelers who want to join trips, can and only can create and update "registrations" and "travelers", should login as registrator
+The managers who organize and in charge of booking flights and hotels, can create and update all the information except "registrations" and "travelers", should login as scheduler
+The officers and the system maintainers who has the authority to access and edit all the information on the system, should be login as tester or systemadmin
+
+
+user id : password
+clerk : (secret)
+coworker : (secret)
+registrator : (secret)
+schedueler: (secret)
+systemadmin : (secret)
+tester : (secret)
+

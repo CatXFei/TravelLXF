@@ -1,0 +1,36 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block name %}
+   BookHotel List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.travelmanager.add_bookhotel %}
+    <a
+        href="{% url 'travelmanager_bookhotel_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New BookHotel</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>BookHotel List</h2>
+    {% if perms.travelmanager.add_bookhotel %}
+    <div class="mobile">
+      <a
+          href="{% url 'travelmanager_bookhotel_create_urlpattern' %}"
+          class="button button-primary">
+        Create New BookHotel</a>
+    </div>
+    {% endif %}
+
+    {% for bookhotel in bookhotel_list %}
+        <li>
+            <a href="{{bookhotel.get_absolute_url }}">{{ bookhotel }}</a>
+        </li>
+    {% empty %}
+        <li><em>There are no currently bookhotels available</em></li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Traveler - {{ traveler }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ traveler }}</h2>
+
+    <ul class="inline">
+        {% if perms.travelmanager.change_traveler %}
+        <li>
+          <a
+              href="{{ traveler.get_update_url }}"
+              class="button">
+            Edit Traveler</a></li>
+        {% endif %}
+        {% if perms.travelmanager.delete_traveler %}
+        <li>
+          <a
+              href="{{ traveler.get_delete_url }}"
+              class="button">
+            Delete Traveler</a></li>
+        {% endif %}
+    </ul>
+
+
+
+    <section>
+        <table>
+            <tr>
+                <th>First Name:</th>
+                <td>{{ traveler.first_name }}</td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
+                <td>{{ traveler.last_name }}</td>
+            </tr>
+            <tr>
+                <th>Passport Number:</th>
+                <td>{{ traveler.passport_number }}</td>
+            </tr>
+            <tr>
+                <th>Telephone Number:</th>
+                <td>{{ traveler.telephone_nunber }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Registrations</h3>
+        <ul>
+            {% for registration in registration_list %}
+                <li>
+                    <a href="{{registration.get_absolute_url }}">{{ registration }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no trips for this traveler.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>ApplyVisa</h3>
+        <ul>
+            {% for applyvisa in applyvisa_list %}
+                <li>
+                    <a href="{{applyvisa.get_absolute_url }}">{{ applyvisa }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no visa application for this traveler.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
+

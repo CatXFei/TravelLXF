@@ -1,0 +1,36 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block name %}
+   BookFlight List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.travelmanager.add_bookflight %}
+    <a
+        href="{% url 'travelmanager_bookflight_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New BookFlight</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>BookFlight List</h2>
+    {% if perms.travelmanager.add_bookflight %}
+    <div class="mobile">
+      <a
+          href="{% url 'travelmanager_bookflight_create_urlpattern' %}"
+          class="button button-primary">
+        Create New BookFlight</a>
+    </div>
+    {% endif %}
+
+    {% for bookflight in bookflight_list %}
+        <li>
+            <a href="{{bookflight.get_absolute_url }}">{{ bookflight }}</a>
+        </li>
+    {% empty %}
+        <li><em>There are no currently bookflights available</em></li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

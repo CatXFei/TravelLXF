@@ -1,0 +1,36 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block name %}
+   Trip List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.travelmanager.add_trip %}
+    <a
+        href="{% url 'travelmanager_trip_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Trip</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Trip List</h2>
+    {% if perms.travelmanager.add_trip %}
+    <div class="mobile">
+      <a
+          href="{% url 'travelmanager_trip_create_urlpattern' %}"
+          class="button button-primary">
+        Create New Trip</a>
+    </div>
+    {% endif %}
+
+    {% for trip in trip_list %}
+        <li>
+            <a href="{{trip.get_absolute_url }}">{{ trip }}</a>
+        </li>
+    {% empty %}
+        <li><em>There are no currently trips available</em></li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

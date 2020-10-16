@@ -1,0 +1,20 @@
+{% extends 'travelmanager/base.html' %}
+
+{% block title %}
+    Delete Traveler
+{% endblock %}
+
+{% block content %}
+    <form
+        action = "{{ traveler.get_delete_url }}"
+        method = "post">
+        {% csrf_token %}
+        <p>
+            Are you sure that you want to delete
+            traveler {{ traveler }}?
+        </p>
+
+        <a href="{{ traveler.get_absolute_url }}">Cancel</a>
+        <button type="submit">Delete Traveler</button>
+    </form>
+{% endblock %}
